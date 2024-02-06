@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'mamar_bank.wsgi.application'
 #     }
 # }
 
-
+import dj_database_url
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -96,17 +96,26 @@ environ.Env.read_env()
 # Your secret key
 SECRET_KEY = env("SECRET_KEY")
 ...
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#     }
+# }
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://bank_z9n0_user:oRPjbjjiwbKmPInkVIqtqHVnwmQsbqde@dpg-cn17i5gcmk4c73djnvag-a.oregon-postgres.render.com/bank_z9n0',
+        conn_max_age=600
+    )
+}
 
 #email
 
