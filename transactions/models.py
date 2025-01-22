@@ -6,7 +6,7 @@ from .constant import TRANSACTIONS_TYPE
 
 
 class UserTransactions(models.Model):
-    account=models.ForeignKey(UserAccount,related_name='account', on_delete=models.CASCADE)
+    account=models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     amount=models.DecimalField(max_digits=12,decimal_places=2)
     after_transaction=models.DecimalField(decimal_places=2,max_digits=12)
     transaction_type=models.IntegerField(choices=TRANSACTIONS_TYPE)
